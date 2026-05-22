@@ -5,9 +5,12 @@ import random
 class EducationalHint:
     """Система обучающих подсказок по дисциплине 'Основы и методологии программирования'"""
     
-    def __init__(self, questions_file='educational_questions.json'):
-        with open(questions_file, 'r', encoding='utf-8') as f:
-            self.questions = json.load(f)
+    def __init__(self, questions_file='questions.json'):
+    import os
+    base_dir = os.path.dirname(__file__)
+    file_path = os.path.join(base_dir, questions_file)
+    with open(file_path, 'r', encoding='utf-8') as f:
+        self.questions = json.load(f)
     
     def get_random_question(self):
         """Выбирает случайный вопрос"""
