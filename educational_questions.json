@@ -1,0 +1,25 @@
+[
+    {
+        "question": "Какой принцип ООП означает сокрытие внутренних деталей класса?",
+        "options": ["Наследование", "Полиморфизм", "Инкапсуляция", "Абстракция"],
+        "correct": "Инкапсуляция",
+        "hint": "Буква 'И'"
+    },
+    {
+        "question": "Как называется этап разработки, на котором исправляют ошибки?",
+        "options": ["Тестирование", "Отладка", "Компиляция", "Рефакторинг"],
+        "correct": "Отладка",
+        "hint": "Буква 'О'"
+    },
+    {
+        "question": "Что означает аббревиатура IDE?",
+        "options": [
+            "Integrated Development Environment",
+            "Interactive Design Editor",
+            "Internal Data Engine",
+            "Interface Development Extension"
+        ],
+        "correct": "Integrated Development Environment",
+        "hint": "Буква 'С'"
+    }
+]
