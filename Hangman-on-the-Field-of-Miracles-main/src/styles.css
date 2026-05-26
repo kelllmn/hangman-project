@@ -1,45 +1,188 @@
+/* Базовый фон и текст для всех виджетов */
+QWidget {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    font-family: Arial;
+}
+
+QStackedWidget {
+    background-color: #1e1e2e;
+}
+
+/* Заголовки и метки */
 QLabel {
     font-family: Arial;
     font-size: 16px;
-    color: #333;
+    color: #cdd6f4;
+    background-color: transparent;
 }
 
+/* Кнопки */
 QPushButton {
     font-family: Arial;
     font-size: 14px;
-    background-color: #226a91;
-    color: white;
-    border: none;
-    padding: 10px;
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    padding: 8px 12px;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 QPushButton:hover {
-    background-color: #1a96dd;
+    background-color: #45475a;
+    border-color: #89b4fa;
+    color: #89b4fa;
 }
 
+QPushButton:pressed {
+    background-color: #585b70;
+}
+
+QPushButton:disabled {
+    background-color: #181825;
+    color: #585b70;
+    border-color: #313244;
+}
+
+/* Поле виселицы */
 QTextEdit {
-    background-color: #f0f0f0;
-    border: 2px solid #000;
-    font-family: Courier;
-    font-size: 18px;
+    background-color: #181825;
+    color: #a6e3a1;
+    border: 2px solid #45475a;
+    font-family: Courier New, Courier;
+    font-size: 16px;
+    border-radius: 4px;
 }
 
-QSlider::groove:horizontal {
-    background-color: #ddd;
-    height: 10px;
+/* Поле ввода в диалоге подсказки */
+QLineEdit {
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 14px;
+    selection-background-color: #89b4fa;
+    selection-color: #1e1e2e;
 }
 
-QSlider::handle:horizontal {
-    background-color: #4CAF50;
-    width: 15px;
-    height: 15px;
-    border-radius: 7px;
+QLineEdit:focus {
+    border-color: #89b4fa;
 }
 
+/* Диалоговое окно */
+QDialog {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+QMessageBox {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+QMessageBox QLabel {
+    color: #cdd6f4;
+}
+
+/* Чекбоксы и радиокнопки */
 QCheckBox {
     font-family: Arial;
     font-size: 14px;
-    color: #333;
+    color: #cdd6f4;
+    spacing: 8px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #45475a;
+    border-radius: 3px;
+    background-color: #313244;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #89b4fa;
+    border-color: #89b4fa;
+}
+
+QRadioButton {
+    font-family: Arial;
+    font-size: 14px;
+    color: #cdd6f4;
+    spacing: 8px;
+}
+
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    background-color: #313244;
+}
+
+QRadioButton::indicator:checked {
+    background-color: #89b4fa;
+    border-color: #89b4fa;
+}
+
+/* Выпадающий список */
+QComboBox {
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+QComboBox:hover {
+    border-color: #89b4fa;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #313244;
+    color: #cdd6f4;
+    selection-background-color: #45475a;
+    selection-color: #89b4fa;
+    border: 1px solid #45475a;
+}
+
+/* Слайдер */
+QSlider::groove:horizontal {
+    background-color: #45475a;
+    height: 6px;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background-color: #89b4fa;
+    width: 16px;
+    height: 16px;
+    margin: -5px 0;
+    border-radius: 8px;
+}
+
+QSlider::sub-page:horizontal {
+    background-color: #89b4fa;
+    border-radius: 3px;
+}
+
+/* Скроллбар */
+QScrollBar:vertical {
+    background-color: #181825;
+    width: 10px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #45475a;
+    border-radius: 5px;
+    min-height: 20px;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
 }
