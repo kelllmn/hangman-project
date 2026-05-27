@@ -98,3 +98,24 @@ def test_loss_condition_not_met():
     for _ in range(9):
         lives -= 1
     assert lives > 0
+
+
+from src.core.game_logic import get_word_and_description
+
+def test_get_word_and_description_returns_pair():
+    """Функция возвращает кортеж (слово, описание)."""
+    words = [
+        {"word": "питон", "description": "Язык программирования"},
+        {"word": "код", "description": "Набор инструкций"}
+    ]
+    word, desc = get_word_and_description(words)
+    assert word in ["питон", "код"]
+    assert desc in ["Язык программирования", "Набор инструкций"]
+    assert len(words) == 1  # Список уменьшился на 1
+
+def test_get_word_and_description_empty_list():
+    """При пустом списке возвращается (None, None)."""
+    words = []
+    word, desc = get_word_and_description(words)
+    assert word is None
+    assert desc is None
