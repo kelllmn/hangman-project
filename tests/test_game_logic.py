@@ -9,10 +9,16 @@ import sys
 import os
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                                'Hangman-on-the-Field-of-Miracles-main'))
+# Корректный путь к папке с игрой
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(project_root, 'Hangman-on-the-Field-of-Miracles-main'))
 
-from src.core.game_logic import create_hidden_word, update_hidden_word
+# Импортируем всё, что нужно, в одном месте
+from src.core.game_logic import (
+    create_hidden_word,
+    update_hidden_word,
+    get_word_and_description
+)
 
 
 # ------------------------------------------------------------------ create_hidden_word
@@ -80,27 +86,7 @@ def test_win_condition_not_met():
     assert '■' in hidden
 
 
-# ------------------------------------------------------------------ loss condition
-
-def test_loss_condition():
-    """10 ошибок = поражение (lives достигает 0)."""
-    max_stages = 11  # stages[0..10], 10 ошибок
-    lives = max_stages - 1  # = 10
-    for _ in range(10):
-        lives -= 1
-    assert lives == 0
-
-
-def test_loss_condition_not_met():
-    """Меньше 10 ошибок — игра продолжается."""
-    max_stages = 11
-    lives = max_stages - 1
-    for _ in range(9):
-        lives -= 1
-    assert lives > 0
-
-
-from src.core.game_logic import get_word_and_description
+# ------------------------------------------------------------------ get_word_and_description
 
 def test_get_word_and_description_returns_pair():
     """Функция возвращает кортеж (слово, описание)."""
@@ -112,6 +98,7 @@ def test_get_word_and_description_returns_pair():
     assert word in ["питон", "код"]
     assert desc in ["Язык программирования", "Набор инструкций"]
     assert len(words) == 1  # Список уменьшился на 1
+
 
 def test_get_word_and_description_empty_list():
     """При пустом списке возвращается (None, None)."""
