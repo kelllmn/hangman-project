@@ -3,11 +3,22 @@
 Десктопная игра «Виселица» на PyQt6/Python с интегрированной системой обучающих подсказок по Python.
 
 ---
+## Состояние проекта
 
+**Финальная версия** (ветка `review/final`), включающая:
+- Полную игровую логику
+- Систему обучающих подсказок по Python (18 вопросов)
+- UML-диаграммы (Use Case, Activity, Class)
+- Модульные тесты
+- Аналитическую документацию
+
+> Все промежуточные ветки (`ba/game-description`, `feature/architecture`, `feature/programmists`, `test/hint-system-validation`) слиты в `review/final`.
+
+---
 ## Структура проекта
 
 ```
-hangman-project/
+review/final/
 ├── ba/
 │   └── analytic_doc.md              # Аналитическая документация (ШАГ 1)
 ├── architecture/
@@ -15,7 +26,6 @@ hangman-project/
 │   ├── activity.png                 # Диаграмма активности
 │   ├── class.png                    # Диаграмма классов
 │   ├── *.mdj                        # Исходники диаграмм (StarUML)
-│   └── REVIEW.md                    # Описание необходимых правок (ШАГ 2)
 ├── Hangman-on-the-Field-of-Miracles-main/
 │   ├── main.py                      # Точка входа — запускать отсюда
 │   ├── requirements.txt
@@ -43,18 +53,6 @@ hangman-project/
 
 ---
 
-## Ветки репозитория
-
-| Ветка | Содержимое |
-|---|---|
-| `main` | Пустой корень проекта |
-| `ba/game-description` | Аналитическая документация (папка `ba/`) |
-| `feature/architecture` | Диаграммы UML (Use Case, Activity, Class) |
-| `feature/programmists` | Игровой код + начальный вариант hint_system |
-| `test/hint-system-validation` | Пустая ветка для тестировщика |
-| `review/final` | **Финальная сборка** — содержит всё вышеперечисленное |
-
----
 
 ## Установка и запуск
 
@@ -73,8 +71,7 @@ pip install PyQt6
 
 ```bash
 # Перейти в папку с игрой
-cd Hangman-on-the-Field-of-Miracles-main
-
+cd review/final/Hangman-on-the-Field-of-Miracles-main
 # Запустить
 python main.py
 ```
@@ -84,7 +81,7 @@ python main.py
 ### Запуск тестов
 
 ```bash
-# Из корня репозитория hangman-project/
+# Из корня review/final/
 pip install pytest
 pytest tests/ -v
 ```
@@ -100,3 +97,7 @@ pytest tests/ -v
 - **code** — дополнение фрагмента кода (вставить пропущенное слово вместо `___`)
 
 За правильный ответ открывается случайная ещё не угаданная буква. За неверный — кнопка блокируется до следующего раунда.
+
+## Сборка
+
+Все ветки (`ba/game-description`, `feature/architecture`, `feature/programmists`, `test/hint-system-validation`) слиты в `review/final`. Для запуска используйте финальную версию.
