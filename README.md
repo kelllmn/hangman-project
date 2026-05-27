@@ -20,7 +20,7 @@
 ```
 review/final/
 ├── ba/
-│   └── analytic_doc.md              # Аналитическая документация (ШАГ 1)
+│   └── analytic_doc.md              # Аналитическая документация 
 ├── architecture/
 │   ├── hangmanUseCase.png           # Use Case диаграмма
 │   ├── activity.png                 # Диаграмма активности
@@ -38,17 +38,17 @@ review/final/
 │       │   ├── game_logic.py        # Логика игры (create/update hidden word)
 │       │   └── data_loader.py       # Загрузка JSON и стилей
 │       └── ui/
-│           ├── game_window.py       # Игровой экран + кнопка подсказки (ШАГ 3)
-│           ├── hint_dialog.py       # Диалог подсказки (choice/input/code) (ШАГ 4)
+│           ├── game_window.py       # Игровой экран + кнопка подсказки 
+│           ├── hint_dialog.py       # Диалог подсказки (choice/input/code) 
 │           ├── main_menu.py         # Главное меню
 │           ├── main_window.py       # Корневой виджет-стек
 │           └── settings_window.py   # Настройки
 ├── educational/
-│   ├── hint_system.py               # Класс QuestionBank (ШАГ 4)
-│   └── questions.json               # 18 вопросов по Python (ШАГ 4)
+│   ├── hint_system.py               # Класс QuestionBank
+│   └── questions.json               # 18 вопросов по Python 
 └── tests/
-    ├── test_hint_system.py          # Тесты QuestionBank (ШАГ 5)
-    └── test_game_logic.py           # Тесты игровой логики (ШАГ 5)
+    ├── test_hint_system.py          # Тесты QuestionBank 
+    └── test_game_logic.py           # Тесты игровой логики 
 ```
 
 ---
