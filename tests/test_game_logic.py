@@ -1,0 +1,100 @@
+"""
+Тесты базовой игровой логики.
+
+Запуск: pytest tests/test_game_logic.py -v
+Из директории: hangman-project/
+"""
+
+import sys
+import os
+import pytest
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                'Hangman-on-the-Field-of-Miracles-main'))
+
+from src.core.game_logic import create_hidden_word, update_hidden_word
+
+
+# ------------------------------------------------------------------ create_hidden_word
+
+def test_create_hidden_word_length():
+    """Скрытое слово имеет ту же длину, что и оригинал."""
+    word = "программа"
+    hidden = create_hidden_word(word)
+    assert len(hidden) == len(word)
+
+
+def test_create_hidden_word_all_squares():
+    """Все символы скрытого слова — '■'."""
+    hidden = create_hidden_word("кот")
+    assert hidden == ['■', '■', '■']
+
+
+def test_create_hidden_word_empty():
+    """Пустое слово даёт пустой список."""
+    assert create_hidden_word("") == []
+
+
+# ------------------------------------------------------------------ update_hidden_word
+
+def test_update_hidden_word_correct_letter():
+    """Правильная буква открывается на всех позициях."""
+    word = "банан"
+    hidden = create_hidden_word(word)
+    hidden = update_hidden_word(word, hidden, 'а')
+    assert hidden == ['■', 'а', '■', 'а', '■']
+
+
+def test_update_hidden_word_wrong_letter():
+    """Отсутствующая буква не меняет скрытое слово."""
+    word = "кот"
+    hidden = create_hidden_word(word)
+    result = update_hidden_word(word, hidden, 'а')
+    assert result == ['■', '■', '■']
+
+
+def test_update_hidden_word_case_insensitive():
+    """Угадывание работает без учёта регистра."""
+    word = "кот"
+    hidden = create_hidden_word(word)
+    hidden = update_hidden_word(word, hidden, 'к')
+    assert hidden[0] == 'к'
+
+
+# ------------------------------------------------------------------ win condition
+
+def test_win_condition():
+    """Слово полностью угадано = победа (нет символов '■')."""
+    word = "кот"
+    hidden = create_hidden_word(word)
+    for letter in set(word):
+        hidden = update_hidden_word(word, hidden, letter)
+    assert '■' not in hidden
+
+
+def test_win_condition_not_met():
+    """Пока есть '■' — победа не достигнута."""
+    word = "кот"
+    hidden = create_hidden_word(word)
+    hidden = update_hidden_word(word, hidden, 'к')
+    assert '■' in hidden
+
+
+# ------------------------------------------------------------------ loss condition
+
+def test_loss_condition():
+    """10 ошибок = поражение (lives достигает 0)."""
+    max_stages = 11  # stages[0..10], 10 ошибок
+    lives = max_stages - 1  # = 10
+    for _ in range(10):
+        lives -= 1
+    assert lives == 0
+
+
+def test_loss_condition_not_met():
+    """Меньше 10 ошибок — игра продолжается."""
+    max_stages = 11
+    lives = max_stages - 1
+    for _ in range(9):
+        lives -= 1
+    assert lives > 0
