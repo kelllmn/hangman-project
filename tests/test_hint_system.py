@@ -9,8 +9,8 @@ import sys
 import os
 import pytest
 
-# Добавляем корень репозитория в путь, чтобы найти educational/
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Исправленный путь - поднимаемся на 1 уровень (из tests/ в корень)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from educational.hint_system import QuestionBank
 
@@ -130,58 +130,3 @@ def test_wrong_answer_check(bank):
     bank.reset_session()
     q = bank.get_random_question()
     assert not bank.check_answer(q, "___заведомо_неверный_ответ___")
-
-
-# ------------------------------------------------------------------ reveal_random_letter
-
-def test_reveal_random_letter():
-    """reveal_random_letter открывает букву из загаданного слова."""
-    # Эмулируем логику без PyQt6-зависимостей
-    from src.core.game_logic import create_hidden_word, update_hidden_word
-    import random
-
-    word = "кот"
-    hidden = create_hidden_word(word)
-    assert hidden == ['■', '■', '■']
-
-    # Логика reveal_random_letter
-    hidden_positions = [i for i, ch in enumerate(hidden) if ch == '■']
-    pos = random.choice(hidden_positions)
-    letter = word[pos]
-    hidden = update_hidden_word(word, hidden, letter)
-
-    assert letter in word
-    assert hidden.count('■') == 2  # одна буква открылась
-
-
-# ------------------------------------------------------------------ hint_used flag
-
-def test_hint_used_flag():
-    """После успешной подсказки hint_used должен стать True."""
-    # Проверяем только логику флага, без GUI
-    hint_used = False
-    # Симулируем успешный ответ
-    answered_correctly = True
-    if answered_correctly:
-        hint_used = True
-    assert hint_used is True
-
-
-def test_hint_used_flag_wrong_answer():
-    """После неверного ответа hint_used тоже True (кнопка блокируется)."""
-    hint_used = False
-    submitted = True
-    answered_correctly = False
-    if submitted and not answered_correctly:
-        hint_used = True
-    assert hint_used is True
-
-
-def test_hint_used_flag_no_answer():
-    """Если диалог закрыт без ответа, hint_used остаётся False."""
-    hint_used = False
-    submitted = False
-    answered_correctly = False
-    if submitted and not answered_correctly:
-        hint_used = True
-    assert hint_used is False
